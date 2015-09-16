@@ -1,0 +1,4 @@
+cron:
+- description: retweet job
+  url: /twitter/auto_retweet_giveaways
+  schedule: every 15 mins

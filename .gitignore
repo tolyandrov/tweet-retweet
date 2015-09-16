@@ -1,0 +1,6 @@
+*.pyc
+.idea/*
+libs/*
+!libs/__init__.py
+settings.py
+app.yaml
