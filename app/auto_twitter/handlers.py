@@ -3,14 +3,15 @@ from webapp2 import RequestHandler
 
 from datetime import datetime, timedelta
 
+from app.auto_twitter import client
 from app.auto_twitter.models import Tweet, Account
 
 
 class AutoRetweetGiveaways(RequestHandler):
     def get(self):
         try:
-            # TODO: Optimize search algorithm to retweet effectively (more tags, check text)
-            tweets_to_retweet = Tweet.search_for_required_tweets('%23giveaway')
+            # TODO: Still need some optimisation to search right tweets
+            tweets_to_retweet = Tweet.search_for_required_tweets('%23giveaway+-filter:links', 10)
             now = datetime.now()
             retweet_in = 0
             for tweet in tweets_to_retweet[-15:]:  # as we can't add more that 15 tasks in default queue
